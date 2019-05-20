@@ -69,6 +69,7 @@ do
 	then
 		read bootdir 'Choose boot (/boot) partition (e.g. sda1, sdb2, etc.): '
 		pacstrap /mnt base
+		mount /dev/$bootdir /mnt/boot
 		genfstab -U /mnt >> /mnt/etc/fstab
 		arch-chroot /mnt
 		echo 'INFO: Default time zone is EST. Set time zone to other later.'
