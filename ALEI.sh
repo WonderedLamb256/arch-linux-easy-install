@@ -39,7 +39,7 @@ do
 		PS3='Choose DE: '
 		select opt in $options
 		do
-			arch-chroot /mnt && success=1 || success=0
+		  arch-chroot /mnt && success=1 || success=0
 			if [ success==0 ]
 			then
 				echo 'ERROR: devices unmounted'
@@ -67,10 +67,7 @@ do
 		done
 	elif [ $options=='InstallOS' ]
 	then
-		read rootdir 'Choose root (/) partition (e.g. sda1, sdb2, etc.): '
 		read bootdir 'Choose boot (/boot) partition (e.g. sda1, sdb2, etc.): '
-		mount /dev/$rootdir /mnt
-		mount /dev/$bootdir /mnt/boot
 		pacstrap /mnt base
 		genfstab -U /mnt >> /mnt/etc/fstab
 		arch-chroot /mnt
